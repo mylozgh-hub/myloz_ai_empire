@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+*secret*
+*credential*
+myloz_live_state.json
+myloz_paper_state.json
+myloz_history.json
+myloz_v*_paper.json
+myloz_v*_paper.backup.json
+*.backup
+*.backup.*
+*.bak
+__pycache__/
+*.py[cod]
