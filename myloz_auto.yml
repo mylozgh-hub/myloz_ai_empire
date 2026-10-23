@@ -9,17 +9,15 @@ steps:
 - name: Download repository
 uses: actions/checkout@v4
 
-  - name: Check bot files
-    run: |
-      echo "Checking Myloz bot files"
-      test -f myloz_live_spot_scanner.py
-      test -f requirements.txt
-      echo "Both files were found"
-
-  - name: Check Python syntax
+  - name: Set up Python
     uses: actions/setup-python@v5
     with:
       python-version: "3.12"
 
-  - name: Compile bot without running it
-    run: python -m py_compile myloz_live_spot_scanner.py
+  - name: Check bot files and syntax
+    run: |
+      echo "Checking Myloz bot files"
+      test -f myloz_live_spot_scanner.py
+      test -f requirements.txt
+      python -m py_compile myloz_live_spot_scanner.py
+      echo "SUCCESS: Bot files found and Python syntax is valid"
