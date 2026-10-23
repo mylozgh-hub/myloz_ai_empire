@@ -1,9 +1,9 @@
 name: Myloz Automatic Bot Test
 
 'on':
-workflow_dispatch:
-schedule:
-- cron: "17 * * * *"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
 
 permissions:
 contents: read
