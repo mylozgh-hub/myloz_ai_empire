@@ -1,9 +1,9 @@
 name: Myloz Automatic Bot Test
 
-on:
+'on':
 workflow_dispatch:
 schedule:
-- cron: "*/15 * * * *"
+- cron: "17 * * * *"
 
 permissions:
 contents: read
@@ -31,7 +31,7 @@ steps:
       echo "Myloz safe test started."
       test -f myloz_live_spot_scanner.py
       test -f requirements.txt
-      echo "Bot file and requirements file found."
+      echo "Bot files found."
 
   - name: Check Python syntax
     run: python -m py_compile myloz_live_spot_scanner.py
