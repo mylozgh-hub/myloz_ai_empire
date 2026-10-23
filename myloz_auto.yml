@@ -1,40 +1,25 @@
-name: Myloz Automatic Bot Test
+name: Myloz Safe Test
 
-'on':
-  workflow_dispatch:
-  schedule:
-    - cron: "17 * * * *"
-
-permissions:
-contents: read
-
-concurrency:
-group: myloz-bot-test
-cancel-in-progress: false
+on: [workflow_dispatch]
 
 jobs:
-safe-test:
+test:
 runs-on: ubuntu-latest
-timeout-minutes: 5
-
 steps:
-  - name: Download Myloz repository
-    uses: actions/checkout@v4
+- name: Download repository
+uses: actions/checkout@v4
 
-  - name: Set up Python
+  - name: Check bot files
+    run: |
+      echo "Checking Myloz bot files"
+      test -f myloz_live_spot_scanner.py
+      test -f requirements.txt
+      echo "Both files were found"
+
+  - name: Check Python syntax
     uses: actions/setup-python@v5
     with:
       python-version: "3.12"
 
-  - name: Check bot files
-    run: |
-      echo "Myloz safe test started."
-      test -f myloz_live_spot_scanner.py
-      test -f requirements.txt
-      echo "Bot files found."
-
-  - name: Check Python syntax
+  - name: Compile bot without running it
     run: python -m py_compile myloz_live_spot_scanner.py
-
-  - name: Finish safe test
-    run: echo "Safe test completed. No trades were placed."
